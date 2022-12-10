@@ -1,7 +1,10 @@
 package br.com.jogodacobrinha;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Cenario {
@@ -18,6 +21,10 @@ public class Cenario {
 
         this.cobrinha = cobrinha;
 
-        root.getChildren();
+        root.getChildren().add(cobrinha.getCabeca());
+    }
+
+    public void setKeyPressed(EventHandler<? super KeyEvent> action) {
+        this.scene.setOnKeyPressed(action);
     }
 }

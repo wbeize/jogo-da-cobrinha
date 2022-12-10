@@ -6,18 +6,31 @@ import javafx.scene.paint.Color;
 public class Cobrinha {
 
     private Canvas cabeca;
+
     public Cobrinha() {
         criarCobrinha();
     }
 
     private void criarCobrinha() {
         this.cabeca = CanvasUtils.buildSquare(Color.BEIGE);
-        this.cabeca.setTranslateX(Configs.WIDTH/2 - Configs.SQUARE_SIZE);
-        this.cabeca.setTranslateY(Configs.HEIGHT/2 - Configs.SQUARE_SIZE);
+        this.cabeca.setTranslateX(Configs.WIDTH / 2 - Configs.SQUARE_SIZE);
+        this.cabeca.setTranslateY(Configs.HEIGHT / 2 - Configs.SQUARE_SIZE);
     }
 
     public Canvas getCabeca() {
         return cabeca;
     }
 
+    public Integer getPosicaoX() {
+        return (int) this.cabeca.getTranslateX();
+    }
+
+    public Integer getPosicaoY() {
+        return (int) this.cabeca.getTranslateY();
+    }
+
+    public void setPosicao(Integer x, Integer y) {
+        this.cabeca.setTranslateX(x);
+        this.cabeca.setTranslateY(y);
+    }
 }

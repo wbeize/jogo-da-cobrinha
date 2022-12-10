@@ -7,11 +7,11 @@ import javafx.scene.paint.Paint;
 public class CanvasUtils {
 
     public static Canvas buildSquare(Paint color) {
-        Canvas square =  new Canvas(Configs.SQUARE_SIZE, Configs.SQUARE_SIZE);
-        GraphicsContext gc = square.getGraphicsContext2D();
+        Canvas quadrado =  new Canvas(Configs.SQUARE_SIZE, Configs.SQUARE_SIZE);
+        GraphicsContext gc = quadrado.getGraphicsContext2D();
         gc.setFill(color);
-
-        return square;
+        gc.fillRect(0,0,Configs.SQUARE_SIZE,Configs.SQUARE_SIZE);
+        return quadrado;
     }
 
 }
