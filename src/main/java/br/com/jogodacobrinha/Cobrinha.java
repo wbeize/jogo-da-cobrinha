@@ -13,6 +13,11 @@ public class Cobrinha {
 
     private void criarCobrinha() {
         this.cabeca = CanvasUtils.buildSquare(Color.BEIGE);
+        resetarPosicao();
+
+    }
+
+    private void resetarPosicao(){
         this.cabeca.setTranslateX(Configs.WIDTH / 2 - Configs.SQUARE_SIZE);
         this.cabeca.setTranslateY(Configs.HEIGHT / 2 - Configs.SQUARE_SIZE);
     }
@@ -32,5 +37,10 @@ public class Cobrinha {
     public void setPosicao(Integer x, Integer y) {
         this.cabeca.setTranslateX(x);
         this.cabeca.setTranslateY(y);
+    }
+
+    public Canvas reset(){
+        resetarPosicao();
+        return this.cabeca;
     }
 }

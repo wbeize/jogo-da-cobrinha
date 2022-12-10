@@ -10,6 +10,7 @@ public class Repeticao {
     private Cenario cenario;
     private KeyCode direcaoAtual;
     private Cobrinha cobrinha;
+    private Timeline timeline;
 
     public Repeticao(Cenario cenario, Cobrinha cobrinha) {
         this.cenario = cenario;
@@ -37,8 +38,8 @@ public class Repeticao {
         comecarRepeticao();
     }
 
-    private void comecarRepeticao() {
-        Timeline timeline = new Timeline();
+    public void comecarRepeticao() {
+        timeline = new Timeline();
         KeyFrame keyFrame = new KeyFrame(Duration.millis(200), e-> {
             Integer posicaoX = cobrinha.getPosicaoX();
             Integer posicaoY = cobrinha.getPosicaoY();
@@ -59,12 +60,31 @@ public class Repeticao {
                 posicaoY = posicaoY + Configs.SQUARE_SIZE;
             }
 
+            // criando condições pra morte da cobrinha
+
+            if (    posicaoX < 0 ||                 // bateu no lado esquerdo da tela
+                    posicaoY < 0 ||                 // bateu no topo da tela
+                    posicaoX > Configs.WIDTH - Configs.SQUARE_SIZE ||
+                    posicaoY > Configs.HEIGHT - Configs.SQUARE_SIZE) {
+
+                gameOver();
+
+            }else{
+                this.cobrinha.setPosicao(posicaoX,posicaoY);
+            }
+
             this.cobrinha.setPosicao(posicaoX, posicaoY);
         });
 
         timeline.getKeyFrames().add(keyFrame);
         timeline.setCycleCount(Integer.MAX_VALUE);
         timeline.play();
-
     }
+
+    public void gameOver() {
+        this.timeline.stop();
+        this.cenario.showGameOver(this);
+    }
+
+
 }

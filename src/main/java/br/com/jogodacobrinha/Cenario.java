@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Cenario {
@@ -26,5 +25,20 @@ public class Cenario {
 
     public void setKeyPressed(EventHandler<? super KeyEvent> action) {
         this.scene.setOnKeyPressed(action);
+    }
+
+    public void showGameOver(Repeticao repeticao) {
+        BotaoTenteNovamente botaoTenteNovamente = new BotaoTenteNovamente(e -> {
+            limpar();
+            this.root.getChildren().add(this.cobrinha.reset());
+            repeticao.comecarRepeticao();
+        });
+
+        this.root.getChildren().add(botaoTenteNovamente);
+    }
+
+    // método para limpar a tela
+    private void limpar(){
+        this.root.getChildren().remove(0,this.root.getChildren().size());
     }
 }
