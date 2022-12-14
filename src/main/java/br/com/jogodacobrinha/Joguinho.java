@@ -13,8 +13,9 @@ public class Joguinho extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Cobrinha cobrinha = new Cobrinha();
-        Cenario cenario = new Cenario(primaryStage, cobrinha);
-        Repeticao repeticao = new Repeticao(cenario, cobrinha);
+        Comida comida = new Comida();
+        Cenario cenario = new Cenario(primaryStage, cobrinha, comida);
+        Repeticao repeticao = new Repeticao(cenario, cobrinha, comida);
     }
 
     public void onHelloButtonClick(ActionEvent actionEvent) {

@@ -2,6 +2,7 @@ package br.com.jogodacobrinha;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -12,7 +13,7 @@ public class Cenario {
     private Group root = new Group();
     private Cobrinha cobrinha;
 
-    public Cenario(Stage primaryStage, Cobrinha cobrinha) {
+    public Cenario(Stage primaryStage, Cobrinha cobrinha, Comida comida) {
         this.scene = new Scene(root, Configs.WIDTH,Configs.HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle("jogo da cobrinha - taira");
@@ -21,6 +22,7 @@ public class Cenario {
         this.cobrinha = cobrinha;
 
         root.getChildren().add(cobrinha.getCabeca());
+        root.getChildren().add(comida.getComida());
     }
 
     public void setKeyPressed(EventHandler<? super KeyEvent> action) {
@@ -40,5 +42,9 @@ public class Cenario {
     // método para limpar a tela
     private void limpar(){
         this.root.getChildren().remove(0,this.root.getChildren().size());
+    }
+
+    public void add(Node node) {
+        this.root.getChildren().add(node);
     }
 }

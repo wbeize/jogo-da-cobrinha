@@ -14,8 +14,8 @@ public class BotaoTenteNovamente extends VBox {
 
     public BotaoTenteNovamente(EventHandler<ActionEvent> action) {
         Label gameOver = new Label("CÊ MORREU!");
-        gameOver.setFont(Font.font(35));
-        gameOver.setTextFill(Color.DARKMAGENTA);
+        gameOver.setFont(Font.font(30));
+        gameOver.setTextFill(Color.RED);
         this.getChildren().add(gameOver);
 
         Button tenteNovamente = new Button("mas bora mais uma?");
@@ -23,7 +23,7 @@ public class BotaoTenteNovamente extends VBox {
         tenteNovamente.setOnAction(action);
         this.getChildren().add(tenteNovamente);
 
-        // definir tamannho no VBox
+        // definir tamanho no VBox
 
         this.setMinWidth(Configs.WIDTH);
         this.setMinHeight(Configs.HEIGHT);

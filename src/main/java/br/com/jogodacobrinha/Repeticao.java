@@ -11,10 +11,12 @@ public class Repeticao {
     private KeyCode direcaoAtual;
     private Cobrinha cobrinha;
     private Timeline timeline;
+    private Comida comida;
 
-    public Repeticao(Cenario cenario, Cobrinha cobrinha) {
+    public Repeticao(Cenario cenario, Cobrinha cobrinha, Comida comida) {
         this.cenario = cenario;
         this.cobrinha = cobrinha;
+        this.comida = comida;
         this.cenario.setKeyPressed(e->{
             KeyCode keyPressed = e.getCode();
 
@@ -62,14 +64,22 @@ public class Repeticao {
 
             // criando condições pra morte da cobrinha
 
-            if (    posicaoX < 0 ||                 // bateu no lado esquerdo da tela
-                    posicaoY < 0 ||                 // bateu no topo da tela
+            if (    posicaoX < 0 ||//      bateu no lado esquerdo da tela
+                    posicaoY < 0 ||//      bateu no topo da tela
                     posicaoX > Configs.WIDTH - Configs.SQUARE_SIZE ||
                     posicaoY > Configs.HEIGHT - Configs.SQUARE_SIZE) {
 
                 gameOver();
 
             }else{
+
+                // verificar se ocorreu a colisão da cabeça da cobra com a comida
+                if(posicaoX.equals(comida.getPosicaoX()) && posicaoY.equals(comida.getPosicaoY())) { // ver se estão na mesma posição
+                    this.comida.setPosicaoAleatoria();
+                    this.cobrinha.comer(this.cenario);
+                }
+
+                // verificando se a cobrinha morreu ou não
                 this.cobrinha.setPosicao(posicaoX,posicaoY);
             }
 
@@ -83,6 +93,8 @@ public class Repeticao {
 
     public void gameOver() {
         this.timeline.stop();
+        this.direcaoAtual=null;
+        this.cobrinha.morte();
         this.cenario.showGameOver(this);
     }
 
