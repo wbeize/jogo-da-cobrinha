@@ -13,13 +13,13 @@ import javafx.scene.text.Font;
 public class BotaoTenteNovamente extends VBox {
 
     public BotaoTenteNovamente(EventHandler<ActionEvent> action) {
-        Label gameOver = new Label("CÊ MORREU!");
-        gameOver.setFont(Font.font(30));
+        Label gameOver = new Label("VISH, CÊ MORREU!");
+        gameOver.setFont(Font.font(20));
         gameOver.setTextFill(Color.RED);
         this.getChildren().add(gameOver);
 
         Button tenteNovamente = new Button("mas bora mais uma?");
-        tenteNovamente.setFont(Font.font(15));
+        tenteNovamente.setFont(Font.font(13));
         tenteNovamente.setOnAction(action);
         this.getChildren().add(tenteNovamente);
 

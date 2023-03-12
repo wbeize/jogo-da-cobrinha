@@ -21,4 +21,3 @@ public class Joguinho extends Application {
     public void onHelloButtonClick(ActionEvent actionEvent) {
     }
 }
-

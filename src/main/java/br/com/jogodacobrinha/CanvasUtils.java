@@ -13,5 +13,4 @@ public class CanvasUtils {
         gc.fillRect(0,0,Configs.SQUARE_SIZE,Configs.SQUARE_SIZE);
         return quadrado;
     }
-
 }

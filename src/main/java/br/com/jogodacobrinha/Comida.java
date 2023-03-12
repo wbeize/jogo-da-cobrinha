@@ -13,7 +13,7 @@ public class Comida {
     }
 
     public void criarComida() {
-        this.comida = CanvasUtils.buildSquare(Color.SADDLEBROWN);
+        this.comida = CanvasUtils.buildSquare(Color.GREENYELLOW);
     }
 
     public void setPosicaoAleatoria() {

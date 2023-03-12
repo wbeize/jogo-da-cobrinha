@@ -3,6 +3,7 @@ package br.com.jogodacobrinha;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Cobrinha {
     }
 
     private void criarCobrinha() {
-        this.cabeca = CanvasUtils.buildSquare(Color.BEIGE);
+        this.cabeca = CanvasUtils.buildSquare(Color.TURQUOISE);
         resetarPosicao();
 
     }
@@ -46,7 +47,7 @@ public class Cobrinha {
 
         // criando método pra fazer a cabeça guiar o corpo e o histórico ficar
 
-        for (int i = 0; i<corpo.size(); i++) {
+        for (int i = 0; i < corpo.size(); i++) {
             Canvas maisCorpo = corpo.get(i);
             Integer[] posicao = this.historicoPosicoes.get(this.historicoPosicoes.size() - (i + 1));
             maisCorpo.setTranslateX(posicao[0]);
@@ -62,21 +63,42 @@ public class Cobrinha {
         }
     }
 
-    public Canvas reset(){
+    public Canvas resetar(){
         resetarPosicao();
+        mudaCor(Color.TURQUOISE);
+        this.historicoPosicoes.clear();
+        this.corpo.clear();
+
         return this.cabeca;
     }
 
     public void morte() {
+        mudaCor(Color.RED);
+    }
+
+    private void mudaCor(Paint color) {
         GraphicsContext gc = this.getCabeca().getGraphicsContext2D();
         gc.clearRect(0,0,Configs.SQUARE_SIZE, Configs.SQUARE_SIZE);
-        gc.setFill(Color.RED);
+        gc.setFill(color);
         gc.fillRect(0,0,Configs.SQUARE_SIZE, Configs.SQUARE_SIZE);
     }
 
     public void comer(Cenario cenario) {
-        Canvas maisCorpo = CanvasUtils.buildSquare(Color.BEIGE);
+        Canvas maisCorpo = CanvasUtils.buildSquare(Color.PALETURQUOISE);
         cenario.add(maisCorpo);
         this.corpo.add(maisCorpo);
+    }
+
+    public boolean colisao(Integer x, Integer y) {
+        for (Canvas maisCorpo: this.corpo) {
+            Integer corpoPosicaoX = (int)maisCorpo.getTranslateX();
+            Integer corpoPosicaoY = (int)maisCorpo.getTranslateY();
+
+            if (x.equals(corpoPosicaoX) && y.equals(corpoPosicaoY)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
